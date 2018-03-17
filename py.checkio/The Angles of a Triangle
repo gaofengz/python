@@ -1,0 +1,23 @@
+## 给定三条边判断能否组成三角形
+import math
+def checkio(a, b, c):
+    if a == b == c:
+        return [60,60,60]
+    else:
+        if a - b < c and a + b > c:
+            cosA = (b*b + c*c - a*a) / 2/b/c
+            cosB = (a*a +c*c - b*b) / 2/a/c
+            A = math.degrees(math.acos(cosA))
+            B = math.degrees(math.acos(cosB))
+            C = 180 - A - B
+            result = [round(A),round(B),round(C)]
+            result.sort()
+            return result
+        else:
+            return [0,0,0]
+
+#These "asserts" using only for self-checking and not necessary for auto-testing
+if __name__ == '__main__':
+    assert checkio(4, 4, 4) == [60, 60, 60], "All sides are equal"
+    assert checkio(3, 4, 5) == [37, 53, 90], "Egyptian triangle"
+    assert checkio(2, 2, 5) == [0, 0, 0], "It's can not be a triangle"

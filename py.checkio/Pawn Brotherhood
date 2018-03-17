@@ -1,0 +1,31 @@
+##棋子是否安全的问题也是考虑所有的情况
+
+def safe_pawns(pawns):
+    num = 0 
+    for i in pawns:
+        i = list(i)
+        if 'a' in i:
+            j = int(i[1]) - 1 
+            check = 'b' + str(j)
+            if check in pawns:
+                num = num + 1
+        elif 'h' in i:
+            j = int(i[1]) - 1
+            check = 'g' + str(j)
+            if check in pawns:
+                num = num + 1
+        else:
+            j1 = int(i[1]) - 1
+            letter1 = ord(i[0]) + 1
+            letter2 = ord(i[0]) - 1
+            check1 = chr(letter1) + str(j1)
+            check2 = chr(letter2) + str(j1)
+            if check1 in pawns or check2 in pawns:
+                num = num + 1
+    return num
+
+if __name__ == '__main__':
+    #These "asserts" using only for self-checking and not necessary for auto-testing
+    assert safe_pawns({"b4", "d4", "f4", "c3", "e3", "g5", "d2"}) == 6
+    assert safe_pawns({"b4", "c4", "d4", "e4", "f4", "g4", "e5"}) == 1
+    print("Coding complete? Click 'Check' to review your tests and earn cool rewards!")

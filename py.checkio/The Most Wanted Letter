@@ -2,8 +2,11 @@ from collections import Counter
 def checkio(text):
     #replace this for solution
     text = text.lower()
+    #Counter 返回一个字典，计算text中字母的个数
     count = Counter([x for x in text if x.isalpha()])
+    #max函数计算其中的最大值
     m = max(count.values())
+    #返回等于最大值的第一个字母
     return sorted([x for (x, y) in count.items() if y == m])[0]
 
 if __name__ == '__main__':

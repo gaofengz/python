@@ -1,0 +1,15 @@
+def checkio(first, second):
+    common = []
+    for i in first.split(','):
+        for j in second.split(','):
+            if i == j:
+                common.append(i)
+    common.sort()  #将列表中的元素按首字母排序  且没有返回值
+    common = ",".join(common)
+    return common
+
+#These "asserts" using only for self-checking and not necessary for auto-testing
+if __name__ == '__main__':
+    assert checkio("hello,world", "hello,earth") == "hello", "Hello"
+    assert checkio("one,two,three", "four,five,six") == "", "Too different"
+    assert checkio("one,two,three", "four,five,one,two,six,three") == "one,three,two", "1 2 3"

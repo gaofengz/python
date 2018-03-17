@@ -1,0 +1,33 @@
+def friendly_number(number, base=1000, decimals=0, suffix='',
+                    powers=['', 'k', 'M', 'G', 'T', 'P', 'E', 'Z', 'Y']):
+    j = '%.' + str(decimals) + 'f'
+    if abs(number) < base:
+        return str(j %number) +  powers[0] + suffix
+    i = 1
+    base1 = base
+    while abs(number) > base:
+        if i == len(powers) - 1:
+            i = len(powers) - 1
+            if decimals == 0:
+                return str(int(number / base1))  + powers[i] + suffix
+                break
+            else:
+                return str(j %(number / base1)) + powers[i] + suffix
+                break
+        if abs(number / base1) < base:
+            if decimals == 0:
+                return str(int(number / base1))  + powers[i] + suffix
+            else:
+                return str(j %(number / base1)) + powers[i] + suffix
+        base1 = base1 * base 
+        i = i + 1
+        
+
+#These "asserts" using only for self-checking and not necessary for auto-testing
+if __name__ == '__main__':
+    assert friendly_number(102) == '102', '102'
+    assert friendly_number(10240) == '10k', '10k'
+    assert friendly_number(12341234, decimals=1) == '12.3M', '12.3M'
+    assert friendly_number(12461, decimals=1) == '12.5k', '12.5k'
+    assert friendly_number(1024000000, base=1024, suffix='iB') == '976MiB', '976MiB'
+
